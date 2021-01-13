@@ -1,0 +1,48 @@
+﻿body {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0,.8);
+}
+
+.buttonContainer {
+    position: absolute;
+    border: 1px solid black;
+    background-color: rgba(66, 0, 255, .50);
+    box-shadow: 0 4px 8px 0 rgba(66,0,255,.45);
+    transition: 0.2s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#canvas1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(purple,black);
+}
+
+a:link {
+    color: azure;
+}
+
+a:visited {
+    color: azure;
+}
+
+header {
+    display:none;
+}
+footer {
+    display:none;
+}
+
+#logo {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    filter: drop-shadow(5px 5px 5px rgba(0,0,255,.5));
+    transform: translate(-50%,-50%);
+}
