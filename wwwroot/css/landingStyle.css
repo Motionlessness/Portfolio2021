@@ -15,6 +15,12 @@
     transform: translate(-50%,-50%);
 }
 
+.buttonContainer:hover{
+    background-color: rgba(66, 0, 255, 1);
+    box-shadow: 0 4px 8px 0 rgba(66, 255, 0, 1);
+    font-size: x-large;
+}
+
 #canvas1 {
     position: absolute;
     top: 0;
@@ -24,12 +30,16 @@
     background: radial-gradient(purple,black);
 }
 
+a:hover {
+    color: rgba(0, 255, 0, 1);
+}
+
 a:link {
     color: azure;
 }
 
 a:visited {
-    color: azure;
+    color: rgba(0, 255, 0, 1);
 }
 
 header {

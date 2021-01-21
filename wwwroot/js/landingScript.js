@@ -32,7 +32,7 @@ class Particle {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = 'rgba(200,0,66,.65)';
+        ctx.fillStyle = 'rgba(250, 0, 150,.65)';
         ctx.fill();
     }
 
@@ -78,7 +78,7 @@ function init() {
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
         let directionX = (Math.random() * 5) - 2.5;
         let directionY = (Math.random() * 5) - 2.5;
-        let color = 'rgba(0,255,0,1)'
+        let color = 'rgba(250, 0, 150, 0.6)';
 
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
     }
@@ -94,7 +94,19 @@ function connect() {
                     * (particlesArray[i].y - particlesArray[j].y));
             if (distance < (canvas.width / 7) * (canvas.height / 7)) {
                 opacityVal = 1 - (distance / 10000);
-                ctx.strokeStyle = 'rgba(0,150,250, ' + opacityVal + ')';
+                var gradient = ctx.createLinearGradient(particlesArray[i].x, particlesArray[i].y, particlesArray[j].x, particlesArray[j].y);
+                gradient.addColorStop("0", 'rgba(250, 0, 0, ' + opacityVal + ')');
+                gradient.addColorStop(1/8, 'rgba(250, 100, 100, ' + opacityVal + ')');
+                gradient.addColorStop(2/8, 'rgba(100, 100, 100, ' + opacityVal + ')');
+                gradient.addColorStop(3/8, 'rgba(100, 250, 100, ' + opacityVal + ')');
+                gradient.addColorStop(4/8, 'rgba(0, 250, 0, ' + opacityVal + ')');
+                gradient.addColorStop(5/8, 'rgba(100, 250, 100, ' + opacityVal + ')');
+                gradient.addColorStop(6/8, 'rgba(100, 100, 100, ' + opacityVal + ')');
+                gradient.addColorStop(7/8, 'rgba(100, 100, 250, ' + opacityVal + ')');
+                gradient.addColorStop("1", 'rgba(0, 0, 250, ' + opacityVal + ')');
+
+                
+                ctx.strokeStyle = gradient;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
