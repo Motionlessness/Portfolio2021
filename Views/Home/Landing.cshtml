@@ -1,3 +1,45 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = null;
 }
+<link rel="stylesheet" href="~/css/liquidMenu.css" />
+
+<canvas id="canvasL"></canvas>
+
+<div class="container">
+    <div class="content">
+        <nav>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+        </nav>
+        <section class="mainBlock">
+            <div>
+                <p>Hello, the names Wil.</p>
+            </div>
+            <section class="topBlock">
+                <div>
+
+                </div>
+            </section>
+            <section class="bottomBlock">
+                <div>
+
+                </div>
+            </section>
+        </section>
+    </div>
+</div>
+<svg>
+    <defs>
+        <filter id="liquid">
+            <feGaussianBlur in="SourceGraphic"
+                            stdDeviation='10' result='blur' />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="liquid" />
+            <feComposite in="SourceGraphic" in2="liquid" operator="atop" />
+        </filter>
+    </defs>
+</svg>
+<script src="~/js/liquidScripts.js"></script>
