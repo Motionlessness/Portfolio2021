@@ -1,5 +1,6 @@
 ﻿* {
     box-sizing: border-box;
+    display: inline-block;
 }
 
 .container {
@@ -18,7 +19,7 @@ nav {
     position: absolute;
 }
 
-button {
+.navbar a {
     width: 100%;
     height: 50px;
     position: relative;
@@ -30,54 +31,56 @@ button {
     background: none;
 }
 
-    button::before {
-        content: '';
-        width: 100%;
-        height: 50px;
-        line-height: 50px;
-        background: black;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition: .3s;
-    }
+.navbar a::before {
+    content: '';
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: .3s;
+    text-align: center;
+}
 
-    button:nth-child(1)::before {
-        content: 'HOME';
-    }
+.navbar a:nth-child(1)::before {
+    content: 'HOME';
+}
 
-    button:nth-child(2)::before {
-        content: 'ART';
-    }
+.navbar a:nth-child(2)::before {
+    content: 'ART';
+}
 
-    button:nth-child(3)::before {
-        content: 'ECOMMERCE';
-    }
+.navbar a:nth-child(3)::before {
+    content: 'ECOMMERCE';
+}
 
-    button:nth-child(4)::before {
-        content: 'MINIGAMES';
-    }
+.navbar a:nth-child(4)::before {
+    content: 'MINIGAMES';
+}
 
-    button:nth-child(5)::before {
-        content: 'PRIVACY';
-    }
+.navbar a:nth-child(5)::before {
+    content: 'PRIVACY';
+}
 
-    button:nth-child(2):hover::before {
-        transform: translateX(50px);
-    }
 
-    button:nth-child(4):hover::before {
-        transform: translateX(50px);
-    }
+.navbar a:nth-child(2):hover::before {
+    transform: translateX(50px);
+}
 
-    button:hover::before {
-        transform: translateX(-50px);
-    }
+.navbar a:nth-child(4):hover::before {
+    transform: translateX(50px);
+}
+
+.navbar a:hover::before {
+    transform: translateX(-50px);
+}
 
 .mainBlock {
     width: 100%;
     min-width: 500px;
-    height: 270px;
+    height: auto;
     border: 3px solid rgb(144, 114, 75);
     position: absolute;
     padding: 38px 60px;
