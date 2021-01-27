@@ -1,0 +1,224 @@
+﻿@{
+    ViewData["Title"] = "Neon Shooter - Minigame v1.0";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<canvas id="miniGame"></canvas>
+<img id="enemySVG" src="~/images/enemySVG.svg" hidden />
+<img id="playerSVG" src="~/images/playerSVG.svg" hidden />
+<img id="projectileSVG" src="~/images/projectileSVG.svg" hidden />
+<img id="backgroundImg" src="~/images/backgroundSVG.svg" hidden />
+<img id="bossSVG" src="~/images/bossSVG.svg" hidden />
+<div id="endGame" class="modal">
+    <div class="modal-content">
+        <p class="display-1"><b>Game Over!</b></p>
+        <p class="display-4" id="score"></p>
+        <span class="close" id="endSpan">&times;</span>
+        <span id="retrySpan">Retry</span>
+    </div>
+</div>
+
+<div id="rules" class="modal">
+    <div class="modal-content">
+        <p class="display-2"><b>Rules:</b></p>
+        <p>Using the Red crossshair Aim and Left-Click mouse to shoot the incoming enemy spaceship.</p><br />
+        <p>Gain <b>1</b> point per enemy spaceship you shoot. <b>10</b> points per enemy spaceship you destroy.</p><br />
+        <p>If an enemy spaceship hits your spaceship in the center, the game is over.</p><br />
+        <p>Enemies randomly drop an <i class="off">Offensive</i> or <i class="def">Defensive</i> upgrade on destruction. </p><br />
+        <p><i class="off">Offensive</i> upgrades make your projectiles very <b>powerful!</b></p><br />
+        <p><i class="def">Defensive</i> upgrades protect your spaceship from <b>1</b> enemy impact.</p><br />
+        <p class="display-2"><b>Hint:</b></p><br />
+        <p>Press <b>Esc</b> to view/close rules. Press <b>F5</b> to retry. Press <b>F11</b> to enter/exit fullscreen.</p><br />
+        <p><i class="def">Defensive</i> upgrades stack!</p>
+        <span class="close" id="close">&times;</span>
+    </div>
+</div>
+
+<div class="nav">
+    <div id="pageLinks">
+        <a asp-controller="Home" asp-action="Minigames">Home</a>
+        <a asp-controller="Home" asp-action="Minigame2">Play Again</a>
+        <a id="rulesCard">Rules</a>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="displayButtons()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+<svg>
+    <defs>
+        <filter id="liquid">
+            <feGaussianBlur in="SourceGraphic" stdDeviation='10' result='blur' />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="liquid" />
+            <feComposite in="SourceGraphic" in2="liquid" operator="atop" />
+        </filter>
+    </defs>
+</svg>
+<svg>
+    <defs>
+        <filter id="wave">
+            <feTurbulence type='fractalNoise' baseFrequency='0.0001 0.0001' numOctaves='1' result='wrap' />
+            <feDisplacementMap xChannelSelector='R' yChanelSelector='G' scale='30' in='SourceGraphic' in2='wrapOffset' />
+        </filter>
+    </defs>
+</svg>
+<script type="text/javascript">
+    let backgroundImg2 = new Image();
+    backgroundImg2.src = "../images/background2SVG.svg";
+    let frameArray = new Array(12);
+    frameArray[0] = new Image();
+    frameArray[0].src = "../images/frames/Frame1.svg";
+    frameArray[1] = new Image();
+    frameArray[1].src = "../images/frames/Frame2.svg";
+    frameArray[2] = new Image();
+    frameArray[2].src = "../images/frames/Frame3.svg";
+    frameArray[3] = new Image();
+    frameArray[3].src = "../images/frames/Frame4.svg";
+    frameArray[4] = new Image();
+    frameArray[4].src = "../images/frames/Frame5.svg";
+    frameArray[5] = new Image();
+    frameArray[5].src = "../images/frames/Frame6.svg";
+    frameArray[6] = new Image();
+    frameArray[6].src = "../images/frames/Frame7.svg";
+    frameArray[7] = new Image();
+    frameArray[7].src = "../images/frames/Frame8.svg";
+    frameArray[8] = new Image();
+    frameArray[8].src = "../images/frames/Frame9.svg";
+    frameArray[9] = new Image();
+    frameArray[9].src = "../images/frames/Frame10.svg";
+    frameArray[10] = new Image();
+    frameArray[10].src = "../images/frames/Frame11.svg";
+</script>
+<script src="~/js/minigame2.js"></script>
+<style>
+    * {
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    #miniGame {
+        cursor: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .modal {
+        color: orangered;
+        display: none;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        color: forestgreen;
+        background-color: rgba(0, 0, 0, 0.8);
+        margin: 15% auto;
+        padding: 5rem;
+        border: 1px solid rgba(66,0,150,1);
+        width: 80%;
+    }
+
+        .modal-content p {
+            color: orangered;
+        }
+
+        .modal-content b {
+            color: lawngreen;
+        }
+
+    .close {
+        color: orangered;
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 15rem;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: aqua;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    #retrySpan {
+        color: lawngreen;
+        position: absolute;
+        right: 1%;
+        bottom: 0;
+        font-size: 5rem;
+    }
+
+        #retrySpan:hover,
+        #retrySpan:focus {
+            color: azure;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .nav {
+        overflow: hidden;
+        position: absolute;
+        top: 1%;
+        right: 5%;
+    }
+
+        .nav #pageLinks {
+            display: none;
+        }
+
+        .nav a.icon {
+            display: block;
+        }
+
+        .nav a {
+            font-size: 2em;
+            display: inline-block;
+            font-family: Impact;
+            background: none;
+            color: rgba(50,50,50,1);
+            border: solid;
+            border-radius: 1em;
+            outline: none;
+            position: relative;
+            filter: url('#liquid');
+        }
+
+            .nav a::before {
+                content: '';
+                background: radial-gradient( rgba(0, 255, 255, .85)50%, rgba(0,255,0,.85));
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+            }
+
+            .nav a:hover {
+                animation: wiggle .5s;
+            }
+
+                .nav a:hover::before {
+                    background: radial-gradient( rgba(66, 0, 255, .85)50%, rgba(210,110,210,.85));
+                    filter: url('#wave');
+                }
+
+    .footer {
+        display: none;
+    }
+
+    .off {
+        color: rgba(255, 0, 255, 1);
+    }
+
+    .def {
+        color: rgba(0, 255, 0, 1);
+    }
+</style>
