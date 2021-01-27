@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniGame v0.1</title>
+    <link rel="stylesheet" href="~/css/minigame1.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <canvas id="miniGame"></canvas>
+    <div class="nav">
+        <div id="pageLinks">
+            <a class="nav-link text-dark" asp-controller="Home" asp-action="Minigames">Home</a>
+            <a class="nav-link text-dark" asp-controller="Home" asp-action="Minigame1">Play again</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="displayButtons()">
+            <i class="fa fa-bars"></i>
+        </a>
+
+    </div>
+
+    <svg>
+        <defs>
+            <filter id="liquid">
+                <feGaussianBlur in="SourceGraphic" stdDeviation='10' result='blur' />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="liquid" />
+                <feComposite in="SourceGraphic" in2="liquid" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+    <svg>
+        <defs>
+            <filter id="wave">
+                <feTurbulence type='fractalNoise' baseFrequency='0.0001 0.0001' numOctaves='1' result='wrap' />
+                <feDisplacementMap xChannelSelector='R' yChanelSelector='G' scale='30' in='SourceGraphic' in2='wrapOffset' />
+            </filter>
+        </defs>
+    </svg>
+    <script src="~/js/minigame1.js"></script>
+</body>
+</html>

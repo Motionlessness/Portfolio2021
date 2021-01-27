@@ -42,6 +42,14 @@ namespace Portfolio2021.Controllers
         {
             return View();
         }
+        public IActionResult Minigame1()
+        {
+            return View();
+        }
+        public IActionResult Minigame2()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
