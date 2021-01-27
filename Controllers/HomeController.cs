@@ -28,6 +28,21 @@ namespace Portfolio2021.Controllers
             return View();
         }
 
+        public IActionResult Art()
+        {
+            return View();
+        }
+
+        public IActionResult eCommerce()
+        {
+            return View();
+        }
+
+        public IActionResult Minigames()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

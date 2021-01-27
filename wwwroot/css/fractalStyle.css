@@ -1,0 +1,61 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+canvas {
+    position: absolute;
+    background: rgba(185, 185, 185,.85);
+    border-radius: 50%;
+}
+
+html {
+    background-color: rgba(65, 0, 155,.85);
+}
+
+.nav {
+    overflow: hidden;
+    position: absolute;
+    top: 1%;
+    right: 5%;
+}
+
+.nav #navbar{
+    display: none;
+}
+
+.nav a.icon {
+    display: block;    
+}
+
+.nav a {
+    font-size: 1.5em;
+    display: block;
+    font-family: Impact;
+    background: none;
+    color: rgba(0, 0, 0, 1);
+    border: solid;
+    border-radius: 1em;
+    outline: none;
+    position: relative;
+    z-index: 10;
+}
+.nav a::before{
+    text-align: center;
+    content: '';
+    background: radial-gradient( rgba(255, 255, 255, .85)50%, rgba(0,0,0,.85));
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.nav a:hover::before{
+    background: radial-gradient( rgba(100, 0, 0, .85)50%, rgba(50,0,150,.85));
+}
+
+i {
+    background-size:auto;
+    font-size: x-large;
+}
