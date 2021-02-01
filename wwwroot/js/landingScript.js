@@ -71,7 +71,7 @@ class Particle {
 
 function init() {
     particlesArray = [];
-    let numberOfParticles = (canvas.height * canvas.width) / 7000;
+    let numberOfParticles = (canvas.height * canvas.width) / 13000;
     for (let i = 0; i < numberOfParticles; i++) {
         let size = (Math.random() * 5) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
@@ -96,16 +96,16 @@ function connect() {
                 opacityVal = 1 - (distance / 10000);
                 var gradient = ctx.createLinearGradient(particlesArray[i].x, particlesArray[i].y, particlesArray[j].x, particlesArray[j].y);
                 gradient.addColorStop("0", 'rgba(250, 0, 0, ' + opacityVal + ')');
-                gradient.addColorStop(1/8, 'rgba(250, 100, 100, ' + opacityVal + ')');
-                gradient.addColorStop(2/8, 'rgba(100, 100, 100, ' + opacityVal + ')');
-                gradient.addColorStop(3/8, 'rgba(100, 250, 100, ' + opacityVal + ')');
-                gradient.addColorStop(4/8, 'rgba(0, 250, 0, ' + opacityVal + ')');
-                gradient.addColorStop(5/8, 'rgba(100, 250, 100, ' + opacityVal + ')');
-                gradient.addColorStop(6/8, 'rgba(100, 100, 100, ' + opacityVal + ')');
-                gradient.addColorStop(7/8, 'rgba(100, 100, 250, ' + opacityVal + ')');
+                gradient.addColorStop(1 / 8, 'rgba(250, 100, 100, ' + opacityVal + ')');
+                gradient.addColorStop(2 / 8, 'rgba(100, 100, 100, ' + opacityVal + ')');
+                gradient.addColorStop(3 / 8, 'rgba(100, 250, 100, ' + opacityVal + ')');
+                gradient.addColorStop(4 / 8, 'rgba(0, 250, 0, ' + opacityVal + ')');
+                gradient.addColorStop(5 / 8, 'rgba(100, 250, 100, ' + opacityVal + ')');
+                gradient.addColorStop(6 / 8, 'rgba(100, 100, 100, ' + opacityVal + ')');
+                gradient.addColorStop(7 / 8, 'rgba(100, 100, 250, ' + opacityVal + ')');
                 gradient.addColorStop("1", 'rgba(0, 0, 250, ' + opacityVal + ')');
 
-                
+
                 ctx.strokeStyle = gradient;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
@@ -132,7 +132,7 @@ window.addEventListener('resize',
     function () {
         canvas.width = innerWidth;
         canvas.height = innerHeight;
-        mouse.radius = (canvas.height / 80) * (canvas.width / 80);
+        mouse.radius = (canvas.height / 150) * (canvas.width / 150);
         init();
     }
 );
