@@ -1,8 +1,10 @@
 ﻿* {
-    box-sizing: border-box;
-    display: inline-block;
+    box-sizing: content-box;
+    display: block;
 }
-
+title{
+    display: none;
+}
 .container {
     position: absolute;
     width: calc(100%-400px);
