@@ -1,5 +1,70 @@
 ﻿@{
     ViewData["Title"] = "MiniGames";
 }
-<a class="nav-link text-dark" asp-controller="Home" asp-action="Minigame1">Minigame v0.1</a>
-<a class="nav-link text-dark" asp-controller="Home" asp-action="Minigame2">Minigame v1.0</a>
+
+<div class="bioContainer">
+    <h2>@ViewData["Title"]</h2>
+
+    <div class="bio">
+        <a id="miniLink" asp-controller="Home" asp-action="Minigame1">Play [Minigame v0.1]!</a><br />
+        <p>While playing around with the canvas element and javascript for a few weeks I wondered if I could make a playable game using javascript.</p>
+        <p>My first implementation of my game was v0.1.</p>
+        <b>Rules: </b><br />
+        <p>Using the Red crossshair Aim and Left-Click mouse to shoot the incoming enemy sphere.</p>
+        <p>Gain <b>1</b> point per enemy sphere you shoot. <b>10</b> points per enemy sphere you destroy.</p>
+        <p>If an enemy sphere hits your sphere in the center, the game is over.</p>
+    </div>
+    <br />
+    <div class="bio">
+        <a id="miniLink" asp-controller="Home" asp-action="Minigame2">Play [Minigame v1.0]!</a><br />
+        <p>The game slowly evolved to replace canvas drawn pictures with SVGs. Custom player, background, and enemy models</p>
+        <p>I also implemented upgrades and added 1 boss level.</p>
+        <p>After level 2 the game currently has some bugs.</p>
+        <b>Rules:</b>
+        <p>Using the crossshair Aim and Left-Click mouse to shoot the incoming enemy spaceship.</p>
+        <p>Gain <b>1</b> point per enemy spaceship you shoot. <b>10</b> points per enemy spaceship you destroy.</p>
+        <p>If an enemy spaceship hits your spaceship in the center, the game is over.</p>
+        <p>Enemies randomly drop an <i class="off">Offensive</i> or <i class="def">Defensive</i> upgrade on destruction. </p>
+        <p><i class="off">Offensive</i> upgrades make your projectiles very <b>powerful!</b></p>
+        <p><i class="def">Defensive</i> upgrades protect your spaceship from <b>1</b> enemy impact.</p>
+        <p><b>Hint:</b></p>
+        <p>Press <b>Esc</b> to view/close rules. Press <b>F5</b> to retry. Press <b>F11</b> to enter/exit fullscreen.</p>
+        <p><i class="def">Defensive</i> upgrades stack!</p>
+
+    </div>
+</div>
+
+<style>
+    h2 {
+        text-shadow: 5px 5px 3px rgb(100,100,100);
+    }
+    body {
+        background: rgb(125,125,125);
+    }
+    .bioContainer {
+        padding: .5em .5em .5em .5em;
+    }
+    .bio {
+        background: rgb(195,195,195);
+        padding: 1em 1em 1em 1em;
+        border: .5em none azure;
+        box-shadow: rgb(100,100,100) 5px 5px 10px;
+    }
+    div b {
+        color: blue;
+    }
+    div a {
+        color: purple;
+    }
+    .off {
+        font-weight:bold;
+        color: rgba(255, 0, 255, 1);
+    }
+    .def {
+        font-weight: bold;
+        color: rgba(0, 255, 0, 1);
+    }
+    footer {
+        background: azure;
+    }
+</style>
