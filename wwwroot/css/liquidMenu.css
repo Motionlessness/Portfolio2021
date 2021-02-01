@@ -25,7 +25,7 @@ nav {
     width: 100%;
     height: 50px;
     position: relative;
-    color: rgb(144, 114, 75);
+    color: rgb(174,197,168);
     margin-bottom: 5px;
     font-size: 14px;
     border: none;
@@ -33,18 +33,18 @@ nav {
     background: none;
 }
 
-.navbar a::before {
-    content: '';
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    background: black;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: .3s;
-    text-align: center;
-}
+    .navbar a::before {
+        content: '';
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        background: rgb(68, 19, 17);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: .3s;
+        text-align: center;
+    }
 
 .navbar a:nth-child(1)::before {
     content: 'HOME';
@@ -83,11 +83,11 @@ nav {
     width: 100%;
     min-width: 500px;
     height: auto;
-    border: 3px solid rgb(144, 114, 75);
+    border: 3px solid rgb(132, 83, 26);
     position: absolute;
     padding: 38px 60px;
-    background: rgb(47,0,15);
-    color: rgb(128, 88, 48);
+    background: rgba(47,47,47,1);
+    color: rgba(132, 83, 26,1);
     font-size: 18px;
     font-weight: bold;
     margin-left: 350px;
@@ -103,7 +103,7 @@ canvas {
 }
 
 body {
-    background: rgba(12, 0, 4,1);
+    background: rgba(26, 33, 28,1);
 }
 
 @media screen and (max-width: 860px) {
@@ -112,18 +112,17 @@ body {
         height: auto;
         margin: 5px 5px 5px 5px;
         padding: 5px 5px;
-        border: 1px solid rgb(144, 114, 75);
+        border: 1px solid rgb(132, 83, 26);
         position: relative;
-        background: rgb(47,0,15);
+        background: rgba(47, 47, 47,1);
         color: rgb(128, 88, 48);
-        font-size: 12px;
+        font-size: 18px;
         font-weight: bold;
         display: block;
     }
 
     .container {
         position: absolute;
-        max-width: 800px;
     }
     nav {
         z-index: 50;
