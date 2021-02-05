@@ -1,5 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Services";
 }
+<h1>Services offered:</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped table-dark" style="text-align:center">
+        <thead class="table-bordered">
+            <tr class="table-bordered">
+                <th>Service</th>
+                <th>Type</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Website</td>
+                <td>Lead generation</td>
+                <td><a class="btn btn-secondary" asp-action="Contact" asp-controller="Home">Contact me</a></td>
+            </tr>
+            <tr>
+                <td>Website</td>
+                <td>Sales</td>
+                <td><a class="btn btn-secondary" asp-action="Contact" asp-controller="Home">Contact me</a></td>
+            </tr>
+            <tr>
+                <td>Development</td>
+                <td>Javascript/Python</td>
+                <td><a class="btn btn-secondary" asp-action="Contact" asp-controller="Home">Contact me</a></td>
+            </tr>
+            <tr>
+                <td>Development</td>
+                <td>C++, C#, Java</td>
+                <td><a class="btn btn-secondary" asp-action="Contact" asp-controller="Home">Contact me</a></td>
+            </tr>
+            <tr>
+                <td>Development</td>
+                <td>Android</td>
+                <td><a class="btn btn-secondary" asp-action="Contact" asp-controller="Home">Contact me</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
