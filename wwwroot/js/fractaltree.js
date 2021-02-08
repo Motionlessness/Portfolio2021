@@ -7,7 +7,7 @@
     }
 }
 
-const canvas = document.querySelector("canvas"); //Space to draw
+const canvas = document.querySelector("canvas"); // Space to draw
 canvas.width = window.innerWidth; // set the drawing space as big as the browser
 canvas.height = window.innerHeight; //resize both width and height to match application
 
@@ -67,7 +67,7 @@ function drawTree(startx, starty, len, angle, bWidth, c1, c2) {
 
     ctx.restore();
 }
-
+// when window resized update canvas element sizes and redraw tree
 window.addEventListener('resize',
     () => {
         canvas.width = window.innerWidth;
@@ -88,6 +88,7 @@ window.addEventListener('resize',
     }
 );
 
+// on click draw new tree on top of old and update canvas
 canvas.addEventListener('click',
     () => {
         color1 = "rgb(" + (Math.random() * 255 + 1) + "," + (Math.random() * 255 + 1) + "," + (Math.random() * 255 + 1) + ")"; //Random color for branches

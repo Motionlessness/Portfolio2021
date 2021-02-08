@@ -1,18 +1,24 @@
+// Creates a 2D drawing panel on canvas element
 const canvas = document.getElementById('canvasL');
 const ctx = canvas.getContext('2d');
 
+// set drawing panel to browser viewing width/height
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// (x,y) co-ordinates for mouse
 const mouse = {
     x: undefined,
     y: undefined
 }
 
+// update mouse(x,y) when mouse moves on window view
 window.addEventListener('mouseover', function(e){
     mouse.x = e.clientX;
     mouse.y = e.clientY;
 });
+
+
 class Button{
     constructor(x, y, width, heigth, baseX) {
         this.x = x;
@@ -21,7 +27,7 @@ class Button{
         this.height = heigth;
         this.baseX = x;
     }
-    update(){
+    update(){ // update rectangle possition on canvas element to slide
         let directionX = 3;
         if ((mouse.x < this.x + this.width &&
             mouse.x > this.x &&
@@ -32,14 +38,17 @@ class Button{
             this.x += directionX;
         }
     }
-    draw(){
+    draw(){ // draw rectangle on canvas element 
         ctx.beginPath();
         ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.closePath();
     }
 }
 
+
+// construct array to contain buttons
 const buttons = [];
+// fill buttons array with button objects
 function createButton(){
     for (let i = 0; i < 5; i++) {
         let topMargin = 50;
@@ -67,7 +76,7 @@ class Particle {
         this.size = size;
         this.weight = weight;
     }
-    update(){
+    update(){ // update particle location on canvas element
         for(let i = 0; i < buttons.length; i++){
             if(this.x < buttons[i].x + buttons[i].width &&
                 this.x > buttons[i].x &&
@@ -82,6 +91,7 @@ class Particle {
 
                 }else this.weight += 0.001;
         }
+        // if particle hits bottom of window return it to the top of window
         if(this.y > canvas.height){
             this.y = 0 - this.size;
             this.x = (Math.random()*60)+200;
@@ -89,22 +99,23 @@ class Particle {
         }
         this.y += this.weight;
     }
-    draw(){
-        // let gradient = ctx.createRadialGradient(this.x, this.y, this.size, this.x*1.2, this.y*1.2, this.size);
-        // gradient.addColorStop('0','rgba(20,0,0,1)');
-        // gradient.addColorStop('1','rgba(45,0,0,1)');
-        // ctx.fillStyle = gradient;
-        ctx.fillStyle = 'rgba(45,0,0,1)';
+    draw(){ // draw particle with shadow on canvas element
+        ctx.fillStyle = 'rgba(30,0,0,1)';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-        ctx.shadowColor = 'rgba(45,0,0,1)';
+        ctx.shadowColor = 'rgba(30,0,0,.85)';
         ctx.shadowBlur = 5;
-        ctx.shadowOffsetY = 15;
+        ctx.shadowOffsetY = -15;
         ctx.fill();
     }
 }
+
+// construct array to contain particles
 const particleArray = [];
-const numParticles = 100;
+// number of particles to draw on canvas element
+const numParticles = 110;
+
+// function to fill particle array with particle objects
 function createParticle(){
     for (let i = 0; i < numParticles; i++) {
         const x = (Math.random()*60)+200;
@@ -116,6 +127,8 @@ function createParticle(){
 }
 createParticle();
 
+
+// function to animate canvas element
 function animate(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     for (let i = 0; i < particleArray.length; i++) {
@@ -128,6 +141,7 @@ function animate(){
 
 animate();
 
+// when window is resized update canvas size
 window.addEventListener('resize',function(e){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;

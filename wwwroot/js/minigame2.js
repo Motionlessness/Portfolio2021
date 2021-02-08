@@ -10,6 +10,7 @@ let rulesOpen = false;
 
 // Modal that displays/hides when user's game ends
 let modal = document.getElementById("endGame");
+
 // button for closing or retrying after game ends
 let closeSpan = document.getElementById("endSpan");
 let retry = document.getElementById("retrySpan");
@@ -23,6 +24,7 @@ canvas.height = window.innerHeight; // set drawing panel to broswer viewing heig
 // (x,y) co-ordinates for canvas center
 const center = { x: canvas.width / 2, y: canvas.height / 2 };
 
+// images to display as enemy, player, boss, projectile, and background
 const bossSVG = new Image();
 bossSVG.src = document.getElementById("bossSVG").src;
 
@@ -38,7 +40,7 @@ projectile.src = document.getElementById("projectileSVG").src;
 const backgroundImg = new Image();
 backgroundImg.src = document.getElementById("backgroundImg").src;
 
-// #upgrade class start
+
 class Upgrade {
     constructor(x, y, radius, speed, type) {
         this.x = x;
@@ -46,17 +48,18 @@ class Upgrade {
         this.radius = radius;
         this.speed = speed;
         this.type = type; // Offensive(true) or Defensive(false) boolean upgrade
-        this.active = false;
+        this.active = false; // Upgrade active boolean
     }
 
     draw() {
+        // If true(offensive upgrade draw)
         if (this.type == true) {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
             ctx.fillStyle = 'rgba(250,0,250,1)';
             ctx.fill();
         }
-        else {
+        else { // else false(defensive upgrade draw)
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
             ctx.fillStyle = 'rgba(0,250,0,1)';
@@ -65,6 +68,7 @@ class Upgrade {
     }
 
     update() {
+        // If upgrade not active update location, else draw upgrade used graphic
         if (!this.active) {
             this.draw();
             this.x = this.x + this.speed.x;
@@ -75,6 +79,7 @@ class Upgrade {
     }
 
     drawUse() {
+        // If/else to draw Offensive or Defensive upgrades on player
         if (this.type == true) {
             ctx.beginPath();
             ctx.arc(player.x, player.y, player.radius / 2.5, 0, Math.PI * 2, false);
@@ -97,10 +102,10 @@ class UpgradeTwo {
         this.radius = radius;
         this.speed = speed;
         this.type = type; // Offensive(true) or Defensive(false) boolean upgrade
-        this.active = false;
+        this.active = false; // Upgrade active boolean
     }
 
-    draw() {
+    draw() { // If true(offensive upgrade draw) , else false(defensive upgrade draw)
         if (this.type == true) {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
@@ -115,7 +120,7 @@ class UpgradeTwo {
         }
     }
 
-    update() {
+    update() { // If upgrade not active update location, else draw upgrade used graphic
         if (!this.active) {
             this.draw();
             this.x = this.x + this.speed.x;
@@ -125,7 +130,7 @@ class UpgradeTwo {
         }
     }
 
-    drawUse() {
+    drawUse() { // If/else to draw Offensive or Defensive upgrades on player
         if (this.type == true) {
             ctx.beginPath();
             ctx.arc(player.x, player.y, player.radius / 2.5, 0, Math.PI * 2, false);
@@ -141,20 +146,22 @@ class UpgradeTwo {
     }
 }
 
-// #upgrade class end
+
 class Player {
     constructor(x, y, radius) {
         this.x = x;
         this.y = y;
         this.radius = radius;
+        // equation to draw svg to match canvas radius
         this.radiusShip = Math.sqrt(((radius / 2) * (radius / 2)) * 2);
     }
 
-    draw() {
+    draw() { // draw player svg on canvas element at (x,y)
         ctx.drawImage(playerSVG, this.x - (this.radiusShip / 2), this.y - (this.radiusShip / 2), this.radiusShip, this.radiusShip);
     }
 
 }
+
 
 class Projectile {
     constructor(x, y, radius, speed) {
@@ -162,14 +169,14 @@ class Projectile {
         this.y = y;
         this.radius = radius;
         this.speed = speed;
-        this.upgraded = false;
+        this.upgraded = false; // change projectile type based on upgrade(boolean)
     }
 
-    draw() {
+    draw() { // draw projectile svg on canvas element from (x,y)
         ctx.drawImage(projectile, this.x, this.y, this.radius, this.radius);
     }
 
-    update() {
+    update() { // update projectile on canvas element based on upgrades(boolean) and level
         if (this.upgraded && levelCount == 1) {
             this.radius = 30;
             this.draw();
@@ -189,20 +196,22 @@ class Projectile {
     }
 }
 
+
 class Enemy {
     constructor(x, y, radius, speed) {
         this.x = x;
         this.y = y;
         this.radius = radius;
         this.speed = speed;
+        // equation to draw svg to match canvas radius
         this.radiusShip = Math.sqrt(((radius / 2) * (radius / 2)) * 2);
     }
 
-    draw() {
+    draw() { // draw enemy svg on canvas element at (x,y)
         ctx.drawImage(enemySVG, this.x - (this.radiusShip / 2), this.y - (this.radiusShip / 2), this.radiusShip, this.radiusShip);
     }
 
-    update() {
+    update() { // update enemy location on canvas element
         this.draw();
         this.x = this.x + this.speed.x;
         this.y = this.y + this.speed.y;
@@ -216,17 +225,18 @@ class Boss {
         this.radius = radius;
         this.speed = speed;
         this.health = 10000;
+        // equation to draw svg to match canvas radius
         this.radiusShip = Math.sqrt(((radius / 2) * (radius / 2)) * 2);
     }
 
-    draw() {
+    draw() { // draw enemy boss svg on canvas element at (x,y) and draw boss health bar 
         ctx.drawImage(bossSVG, this.x - (this.radiusShip / 2), this.y - (this.radiusShip / 2), this.radiusShip, this.radiusShip);
         ctx.font = "30px Verdana";
         ctx.fillStyle = 'white';
         ctx.fillText('HP: ' + Math.ceil((this.health / 10000) * 100) + "%", (this.x - (this.radiusShip / 2) + 30), (this.y - (this.radiusShip / 2)));
     }
 
-    update() {
+    update() { // update enemy boss location and health bar on cavnas element
         this.draw();
         this.speed += 0.002;
         const distance = window.innerHeight > window.innerWidth ? (window.innerWidth / 3) : (window.innerHeight / 3);
@@ -241,7 +251,7 @@ let mouse = {
     x: null,
     y: null
 };
-// updates mouse (x,y) co-ordinates
+// updates mouse (x,y) co-ordinates on mouse movement
 canvas.addEventListener('mousemove',
     (event) => {
         mouse.x = event.x;
@@ -257,7 +267,7 @@ class Crosshair {
         this.color = color;
     }
 
-    draw() {
+    draw() { // draw a crosshair(+) at mouse (x,y) co-ordinates on canvas element
         ctx.beginPath();
         ctx.moveTo(this.x + this.size, this.y,);
         ctx.lineTo(this.x - this.size, this.y);
@@ -270,13 +280,14 @@ class Crosshair {
         ctx.stroke();
     }
 
-    update() {
+    update() { // update crosshair on mouse (x,y) co-ordinates on canvas element
         this.x = mouse.x;
         this.y = mouse.y;
 
         this.draw();
     }
 }
+
 
 // construct player in center of canvas
 const player = new Player(center.x, center.y, 110);
@@ -634,9 +645,11 @@ function animate() {
             }
         }
     });
-    // #upgrade end
-    // keep crosshair on canvas
-    crosshair.update(); // #crosshair
+
+    // draw crosshair on canvas
+    crosshair.update(); 
+
+    // if 50 enemys destroyed spawn boss level
     if (enemyCount == 50 && levelCount == 1) {
         setTimeout(() => {
             cancelAnimationFrame(frame);
