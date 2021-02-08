@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark rounded-pill box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" style="font-size:40px" asp-controller="Home" asp-action="Index">W.C.🌚</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -17,21 +17,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 text-center">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Landing">Home</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Landing">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Art" asp-action="Index">Art</a>
+                            <a class="nav-link" asp-controller="Art" asp-action="Index">Art</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Contact" asp-action="Index">eCommerce</a>
+                            <a class="nav-link" asp-controller="Contact" asp-action="Index">eCommerce</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Minigames" asp-action="Index">Minigames</a>
+                            <a class="nav-link" asp-controller="Minigames" asp-action="Index">Minigames</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                 </div>
@@ -44,7 +44,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="rounded-pill text-light bg-dark footer text-muted">
         <div class="container">
             <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> -
             <a href="https://github.com/Motionlessness">Github</a> -
