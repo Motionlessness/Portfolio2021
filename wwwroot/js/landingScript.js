@@ -1,17 +1,21 @@
-﻿const canvas = document.getElementById('canvas1');
+﻿// Creates a 2D drawing panel on canvas element
+const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 
+// set drawing panel to browser viewing width/height
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// constructs an array to contain particles
 let particlesArray;
 
+// (x,y) co-ordinates for mouse
 let mouse = {
     x: null,
     y: null,
     radius: (canvas.height / 150) * (canvas.width / 150),
 };
-
+// updates mouse (x,y) co-ordinates on mouse movement
 window.addEventListener('mousemove',
     function (event) {
         mouse.x = event.x;
@@ -29,14 +33,15 @@ class Particle {
         this.color = color;
     }
 
-    draw() {
+    draw() { // draws a circle at (x,y) co-ordinates
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
         ctx.fillStyle = 'rgba(250, 0, 150,.65)';
         ctx.fill();
     }
 
-    update() {
+    // update particle location. if a particle hits the view window border update (x,y) direction
+    update() {  
         if (this.x > canvas.width || this.x < 0) {
             this.directionX = -this.directionX;
         }
@@ -44,6 +49,8 @@ class Particle {
             this.directionY = -this.directionY;
         }
 
+
+        // if mouse(x,y)+mouse(radius) is near particles(x,y)+particles(radius) push particles away
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
@@ -69,8 +76,10 @@ class Particle {
 
 }
 
+// function to fill particlesArray with objects
 function init() {
     particlesArray = [];
+    // equation to fill array with particles based on window size
     let numberOfParticles = (canvas.height * canvas.width) / 13000;
     for (let i = 0; i < numberOfParticles; i++) {
         let size = (Math.random() * 5) + 1;
@@ -84,6 +93,7 @@ function init() {
     }
 }
 
+// function to connect particles close to each other
 function connect() {
     let opacityVal = 1;
     for (let i = 0; i < particlesArray.length; i++) {
@@ -117,6 +127,7 @@ function connect() {
     }
 }
 
+// function to animate particles on the canvas element
 function animate() {
     requestAnimationFrame(animate);
     ctx.clearRect(0, 0, innerWidth, innerHeight);
@@ -128,6 +139,7 @@ function animate() {
     document.body.style.background = "#000000 url('" + canvas.toDataURL() + "')"
 }
 
+// when window is resized redraw canvas element to fit window
 window.addEventListener('resize',
     function () {
         canvas.width = innerWidth;
@@ -137,6 +149,7 @@ window.addEventListener('resize',
     }
 );
 
+// when mouse leaves windows view mouse(x,y) do not effect particles
 window.addEventListener('mouseout',
     function () {
         mouse.x = undefined;
