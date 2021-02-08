@@ -3,11 +3,12 @@
 }
 <h1>Android Development Request</h1>
 <div>
-    <form class="form-group">
-        <label>Name : &emsp;&emsp;</label><input id="Name" /> <br />
-        <label>Phone :&emsp;&emsp;</label> <input id="Phone" /> <br />
-        <label>Email : &emsp;&emsp;</label> <input id="Email" /> <br />
+    <form class="form-group" action="mailto:13motion13@gmail.com" method="post" enctype="text/plain">
+        <label>Name : &emsp;&emsp;</label><input type="text" name="Name" /> <br />
+        <label>Phone :&emsp;&emsp;</label> <input type="text" name="Phone" /> <br />
+        <label>Email : &emsp;&emsp;</label> <input type="text" name="Email" /> <br />
         <label>Please describe the services below :</label><br/>
-        <textarea id="Description" style="width:50%; height:10em"></textarea>
+        <textarea name="Description" style="width:50%; height:10em"></textarea><br />
+        <input type="submit" value="Send" />
     </form>
 </div>
