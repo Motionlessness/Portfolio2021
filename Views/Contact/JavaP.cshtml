@@ -1,15 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Javascript/Python Development";
 }
-<h1>Javascript/Python Development Request</h1>
+<h1 class="bg-secondary border border-dark text-center">Javascript/Python Development Request</h1>
 <div>
-    <form class="form-group" action="mailto:13motion13@gmail.com" method="post" enctype="text/plain">
-        <label>Name : &emsp;&emsp;</label><input type="text" name="Name" /> <br />
-        <label>Phone :&emsp;&emsp;</label> <input type="text" name="Phone" /> <br />
-        <label>Email : &emsp;&emsp;</label> <input type="text" name="Email" /> <br />
-        <label>Please describe the services below :</label><br />
-        <textarea name="Description" style="width:50%; height:10em"></textarea><br />
-        <input type="submit" value="Send" />
+    <form class="form-floating mb-3" action="mailto:13motion13@gmail.com" method="post" enctype="text/plain">
+        <label class="text-light" for="floatingName">Name:</label>
+        <input type="text" class="form-control bg-dark text-light" id="floatingName" placeholder="Name">
+        <label class="text-light" for="floatingNumber">Phone number:</label>
+        <input type="text" class="form-control bg-dark text-light" id="floatingNumber" placeholder="(1+) 123-456-7890">
+        <label class="text-light" for="floatingEmail">Email address:</label>
+        <input type="email" class="form-control bg-dark text-light" id="floatingEmail" placeholder="name@example.com">
+        <label class="text-light" for="floatingDescription">Service Description:</label>
+        <textarea class="form-control bg-dark text-light" id="floatingDescription" placeholder="Please describe the services needed in detail here"></textarea>
+        <br /><input type="submit" class="form-control btn-dark" />
     </form>
 </div>
 
