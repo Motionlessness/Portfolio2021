@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Portfolio2021.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,24 +20,64 @@ namespace Portfolio2021.Controllers
         {
             return View();
         }
+
+        [HttpGet]
         public IActionResult Leads()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Leads(Email email)
+        {
+            email.Submit().Wait();
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult Sales()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Sales(Email email)
+        {
+            email.Submit().Wait();
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult JavaP()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Javap(Email email)
+        {
+            email.Submit().Wait();
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult JavaC()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult JavaC(Email email)
+        {
+            email.Submit().Wait();
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult Android()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Android(Email email)
+        {
+            email.Submit().Wait();
             return View();
         }
     }

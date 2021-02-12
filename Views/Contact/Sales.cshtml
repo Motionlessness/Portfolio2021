@@ -1,17 +1,19 @@
-﻿@{
+﻿@model Email
+@{
     ViewData["Title"] = "Website Development";
 }
 <h1 class="bg-secondary border border-dark text-center">Sales Website Request</h1>
 <div>
-    <form class="form-floating mb-3" action="mailto:13motion13@gmail.com" method="post" enctype="text/plain">
-        <label class="text-light" for="floatingName">Name:</label>
-        <input type="text" class="form-control bg-dark text-light" id="floatingName" placeholder="Name">
-        <label class="text-light" for="floatingNumber">Phone number:</label>
-        <input type="text" class="form-control bg-dark text-light" id="floatingNumber" placeholder="(1+) 123-456-7890">
-        <label class="text-light" for="floatingEmail">Email address:</label>
-        <input type="email" class="form-control bg-dark text-light" id="floatingEmail" placeholder="name@example.com">
-        <label class="text-light" for="floatingDescription">Service Description:</label>
-        <textarea class="form-control bg-dark text-light" id="floatingDescription" placeholder="Please describe the services needed in detail here"></textarea>
-        <br /><input type="submit" class="form-control btn-dark" />
+    <form class="form-floating mb-3" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="RequestType" value="Sales Website Request" />
+        <label asp-for="Name" class="text-light">Name:</label>
+        <input asp-for="Name" type="text" class="form-control bg-dark text-light" placeholder="Name">
+        <label asp-for="PhoneNumber" class="text-light">Phone number:</label>
+        <input asp-for="PhoneNumber" type="text" class="form-control bg-dark text-light" placeholder="(1+) 123-456-7890">
+        <label asp-for="FromAddress" class="text-light" for="floatingEmail">Email address:</label>
+        <input asp-for="FromAddress" type="email" class="form-control bg-dark text-light" id="floatingEmail" placeholder="name@example.com">
+        <label asp-for="Description" class="text-light" for="floatingDescription">Service Description:</label>
+        <textarea asp-for="Description" class="form-control bg-dark text-light" id="floatingDescription" placeholder="Please describe the services needed in detail here"></textarea>
+        <br /><input type="submit" value="Submit" class="form-control btn-dark" />
     </form>
 </div>
