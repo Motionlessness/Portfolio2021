@@ -16,14 +16,13 @@ namespace Portfolio2021.Models
             var from = new EmailAddress("13wilc13@gmail.com", Name + " " + FromAddress);
             var subject = RequestType;
             var to = new EmailAddress("13wilc13@gmail.com", "William Crouch");
-            var plainTextContent = Description;
+            var plainTextContent = PhoneNumber + Description;
             var htmlContent = Description;
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
         }
         public string Name { get; set; }
         public string RequestType { get; set; }
-
         public string Description { get; set; }
         public string PhoneNumber { get; set; }
         public string FromAddress { get; set; }
