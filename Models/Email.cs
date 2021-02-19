@@ -16,8 +16,8 @@ namespace Portfolio2021.Models
             var from = new EmailAddress("13wilc13@gmail.com", Name + " " + FromAddress);
             var subject = RequestType;
             var to = new EmailAddress("13wilc13@gmail.com", "William Crouch");
-            var plainTextContent = PhoneNumber + Description;
-            var htmlContent = Description;
+            var plainTextContent = PhoneNumber + " " + Description;
+            var htmlContent = PhoneNumber + " " + Description;
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
         }

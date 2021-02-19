@@ -13,7 +13,7 @@
         <label asp-for="FromAddress" class="text-light" for="floatingEmail">Email address:</label>
         <input asp-for="FromAddress" type="email" class="form-control bg-dark text-light" id="floatingEmail" placeholder="name@example.com">
         <label asp-for="Description" class="text-light" for="floatingDescription">Service Description:</label>
-        <span asp-for="Description" class="textarea bg-dark text-light" id="floatingDescription" role="textbox" contenteditable></span>
+        <textarea asp-for="Description" class="form-control bg-dark text-light" rows="10" placeholder="Please enter a description of services here...."></textarea>
         <br /><input type="submit" value="Submit" class="form-control btn-dark" />
     </form>
 </div>

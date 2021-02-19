@@ -1,23 +1,6 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-.textarea[contenteditable]:empty::before {
-    content: "Please describe the services needed in detail here...\A \A \A \A";
-    white-space: pre;
-    color: grey;
-}
-.textarea {
-    padding: .375rem .75rem;
-    border: 1px solid white;
-    border-radius:.25rem;
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    resize: both;
-}
-span .textarea {
-    
-    display: block;
-}
+
 
 a.navbar-brand {
   white-space: normal;
