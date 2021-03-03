@@ -19,7 +19,7 @@ namespace Portfolio2021.Models
             var plainTextContent = PhoneNumber + " " + Description;
             var htmlContent = PhoneNumber + " " + Description;
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
+            await client.SendEmailAsync(msg).ConfigureAwait(false);
         }
         public string Name { get; set; }
         public string RequestType { get; set; }
